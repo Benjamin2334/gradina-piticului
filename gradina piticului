@@ -1,0 +1,61 @@
+#include <fstream>
+
+using namespace std;
+ifstream fin("pitic.in");
+ofstream fout("pitic.out");
+int long long k, s=0, copiei, d=2, p=0, j;
+bool prim(int n){
+    int ok=0;
+    if(n<2){
+        return false;
+    }
+    if(n==2){
+        return true;
+    }
+    for(int i=2;i*i<=n;i++){
+        if(n%i==0){
+            return false;
+            ok=1;
+        }
+    }
+    if(ok==0){
+        return true;
+    }
+}
+int main()
+{
+    fin>>k;
+    j=0;
+    while(k){
+            j++;
+        if(prim(j)==true){
+            fout<<j<<" ";
+            ;
+        }
+
+        else{
+
+                copiei=j;
+                s=0;
+                d=2;
+            while(j>1){
+                    p=0;
+                while(j%d==0){
+                    j=j/d;
+                    p=1;
+                }
+                if(p==1){
+                    s+=d;
+                }
+                d++;
+            }
+            fout<<s<<" ";
+            j=copiei;
+
+        }
+
+        k--;
+
+    }
+    return 0;
+}
